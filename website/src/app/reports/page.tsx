@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
-import { ViewAnalysisModal } from '@/components/ActionModals';
+import { ViewAnalysisModal, ScheduleReportModal, GenerateNewReportModal, GenerateReportModal, ViewAllReportsModal, DownloadReportModal } from "@/components/ActionModals";
 
 export default function ReportsPage() {
   // Mock reports data
@@ -93,8 +93,8 @@ export default function ReportsPage() {
           <p className="text-gray-600">AI-generated reports and analysis for your real estate investments</p>
         </div>
         <div className="flex space-x-2">
-          <Button variant="outline">Schedule Report</Button>
-          <Button variant="default">Generate New Report</Button>
+          <ScheduleReportModal buttonVariant="outline" />
+          <GenerateNewReportModal buttonVariant="default" />
         </div>
       </div>
 
@@ -116,7 +116,7 @@ export default function ReportsPage() {
                   <p className="text-xs text-gray-500">Estimated processing time: {template.estimatedTime}</p>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full">Generate Report</Button>
+                  <GenerateReportModal triggerText="Generate Report" buttonClassName="w-full" />
                 </CardFooter>
               </Card>
             ))}
@@ -132,7 +132,7 @@ export default function ReportsPage() {
               <CardTitle>Recent Reports</CardTitle>
               <CardDescription>Access and manage your generated reports</CardDescription>
             </div>
-            <Button variant="outline">View All Reports</Button>
+            <ViewAllReportsModal buttonVariant="outline" />
           </div>
         </CardHeader>
         <CardContent>
@@ -169,9 +169,7 @@ export default function ReportsPage() {
                     <td className="px-4 py-3">
                       <div className="flex space-x-2">
                         <ViewAnalysisModal triggerText="View" buttonVariant="outline" buttonSize="sm" modalTitle="Report Details" />
-                        <Button variant="outline" size="sm">
-                          Download
-                        </Button>
+                        <DownloadReportModal buttonVariant="outline" buttonSize="sm" />
                       </div>
                     </td>
                   </tr>

@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
-import { AnalyzeDealModal } from '@/components/ActionModals';
+import { AnalyzeDealModal, SaveAnalysisModal, GenerateDetailedReportModal } from '@/components/ActionModals';
 
 export default function DealAnalysisPage() {
   return (
@@ -417,8 +417,8 @@ export default function DealAnalysisPage() {
           </CardContent>
           <CardFooter>
             <div className="flex justify-between w-full">
-              <Button variant="outline">Save Analysis</Button>
-              <Button>Generate Detailed Report</Button>
+              <SaveAnalysisModal buttonVariant="outline" />
+              <GenerateDetailedReportModal />
             </div>
           </CardFooter>
         </Card>

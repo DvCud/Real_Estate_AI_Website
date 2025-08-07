@@ -3,6 +3,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
+import { SaveAnalysisModal } from '@/components/ActionModals';
 import { mockPropertyData } from '@/lib/mockData';
 
 interface PropertyAnalysisProps {
@@ -85,7 +86,7 @@ const PropertyAnalysis: React.FC<PropertyAnalysisProps> = ({ property_id }) => {
           </p>
         </div>
         <div className="mt-4 flex space-x-4 md:mt-0">
-          <Button variant="outline">Save Analysis</Button>
+          <SaveAnalysisModal buttonVariant="outline" />
           <Button variant="default">Add to Portfolio</Button>
         </div>
       </div>

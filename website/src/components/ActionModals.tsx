@@ -325,6 +325,478 @@ export const ViewMarketReportModal: React.FC<{ className?: string }> = ({ classN
   </ActionModal>
 );
 
+export const SaveAnalysisModal: React.FC<{ className?: string, triggerText?: string, buttonVariant?: ButtonVariant, buttonSize?: ButtonSize }> = ({ 
+  className, 
+  triggerText = "Save Analysis", 
+  buttonVariant = "outline", 
+  buttonSize = "default" 
+}) => (
+  <ActionModal 
+    triggerText={triggerText} 
+    modalTitle="Save Analysis"
+    modalDescription="Save your current analysis for future reference"
+    buttonVariant={buttonVariant}
+    buttonSize={buttonSize}
+    buttonClassName={className}
+  >
+    <div className="space-y-4">
+      <div>
+        <h3 className="text-lg font-medium">Analysis Details</h3>
+        <div className="mt-2 space-y-4">
+          <div>
+            <label htmlFor="analysis-name" className="block text-sm font-medium text-gray-700">Analysis Name</label>
+            <input 
+              type="text" 
+              id="analysis-name" 
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" 
+              placeholder="Enter a name for this analysis"
+            />
+          </div>
+          <div>
+            <label htmlFor="analysis-description" className="block text-sm font-medium text-gray-700">Description (Optional)</label>
+            <textarea 
+              id="analysis-description" 
+              rows={3} 
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" 
+              placeholder="Add notes or description"
+            />
+          </div>
+          <div>
+            <label htmlFor="analysis-tags" className="block text-sm font-medium text-gray-700">Tags (Optional)</label>
+            <input 
+              type="text" 
+              id="analysis-tags" 
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" 
+              placeholder="e.g., residential, austin, rental"
+            />
+          </div>
+          <div className="flex justify-end">
+            <Button>Save Analysis</Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ActionModal>
+);
+
+export const GenerateDetailedReportModal: React.FC<{ className?: string, triggerText?: string, buttonVariant?: ButtonVariant, buttonSize?: ButtonSize }> = ({ 
+  className, 
+  triggerText = "Generate Detailed Report", 
+  buttonVariant = "default", 
+  buttonSize = "default" 
+}) => (
+  <ActionModal 
+    triggerText={triggerText} 
+    modalTitle="Generate Detailed Report"
+    modalDescription="Create a comprehensive analysis report for this property"
+    buttonVariant={buttonVariant}
+    buttonSize={buttonSize}
+    buttonClassName={className}
+  >
+    <div className="space-y-4">
+      <div>
+        <h3 className="text-lg font-medium">Report Options</h3>
+        <div className="mt-2 space-y-4">
+          <div>
+            <label htmlFor="report-name" className="block text-sm font-medium text-gray-700">Report Name</label>
+            <input 
+              type="text" 
+              id="report-name" 
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" 
+              placeholder="Enter a name for this report"
+            />
+          </div>
+          <div>
+            <p className="block text-sm font-medium text-gray-700 mb-2">Report Sections</p>
+            <div className="space-y-2">
+              {[
+                { id: 'financial', label: 'Financial Analysis' },
+                { id: 'market', label: 'Market Comparison' },
+                { id: 'risk', label: 'Risk Assessment' },
+                { id: 'optimization', label: 'Optimization Recommendations' },
+                { id: 'projections', label: 'Cash Flow Projections' },
+              ].map((section) => (
+                <div key={section.id} className="flex items-center">
+                  <input 
+                    id={`section-${section.id}`} 
+                    name={`section-${section.id}`} 
+                    type="checkbox" 
+                    className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" 
+                    defaultChecked 
+                  />
+                  <label htmlFor={`section-${section.id}`} className="ml-2 block text-sm text-gray-700">
+                    {section.label}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="block text-sm font-medium text-gray-700 mb-2">Report Format</p>
+            <div className="flex space-x-4">
+              {[
+                { id: 'pdf', label: 'PDF' },
+                { id: 'excel', label: 'Excel' },
+              ].map((format) => (
+                <div key={format.id} className="flex items-center">
+                  <input 
+                    id={`format-${format.id}`} 
+                    name="report-format" 
+                    type="radio" 
+                    className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500" 
+                    defaultChecked={format.id === 'pdf'} 
+                  />
+                  <label htmlFor={`format-${format.id}`} className="ml-2 block text-sm text-gray-700">
+                    {format.label}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex justify-end">
+            <Button>Generate Report</Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ActionModal>
+);
+
+export const ScheduleReportModal: React.FC<{ className?: string, triggerText?: string, buttonVariant?: ButtonVariant, buttonSize?: ButtonSize }> = ({ 
+  className, 
+  triggerText = "Schedule Report", 
+  buttonVariant = "outline", 
+  buttonSize = "default" 
+}) => (
+  <ActionModal 
+    triggerText={triggerText} 
+    modalTitle="Schedule Report"
+    modalDescription="Set up automated report generation on a schedule"
+    buttonVariant={buttonVariant}
+    buttonSize={buttonSize}
+    buttonClassName={className}
+  >
+    <div className="space-y-4">
+      <div>
+        <h3 className="text-lg font-medium">Report Schedule</h3>
+        <div className="mt-2 space-y-4">
+          <div>
+            <label htmlFor="report-type" className="block text-sm font-medium text-gray-700">Report Type</label>
+            <select 
+              id="report-type" 
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+            >
+              <option>Portfolio Performance</option>
+              <option>Market Intelligence</option>
+              <option>Investment Opportunities</option>
+              <option>Cash Flow Analysis</option>
+              <option>Tax Optimization</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="frequency" className="block text-sm font-medium text-gray-700">Frequency</label>
+            <select 
+              id="frequency" 
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+            >
+              <option>Weekly</option>
+              <option>Monthly</option>
+              <option>Quarterly</option>
+              <option>Annually</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="delivery-method" className="block text-sm font-medium text-gray-700">Delivery Method</label>
+            <div className="mt-1 space-y-2">
+              <div className="flex items-center">
+                <input 
+                  id="delivery-email" 
+                  name="delivery-method" 
+                  type="checkbox" 
+                  className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" 
+                  defaultChecked 
+                />
+                <label htmlFor="delivery-email" className="ml-2 block text-sm text-gray-700">
+                  Email
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input 
+                  id="delivery-dashboard" 
+                  name="delivery-method" 
+                  type="checkbox" 
+                  className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" 
+                  defaultChecked 
+                />
+                <label htmlFor="delivery-dashboard" className="ml-2 block text-sm text-gray-700">
+                  Dashboard
+                </label>
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-end">
+            <Button>Schedule Report</Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ActionModal>
+);
+
+export const GenerateNewReportModal: React.FC<{ className?: string, triggerText?: string, buttonVariant?: ButtonVariant, buttonSize?: ButtonSize }> = ({ 
+  className, 
+  triggerText = "Generate New Report", 
+  buttonVariant = "default", 
+  buttonSize = "default" 
+}) => (
+  <ActionModal 
+    triggerText={triggerText} 
+    modalTitle="Generate New Report"
+    modalDescription="Create a new AI-powered analysis report"
+    buttonVariant={buttonVariant}
+    buttonSize={buttonSize}
+    buttonClassName={className}
+  >
+    <div className="space-y-4">
+      <div>
+        <h3 className="text-lg font-medium">Select Report Type</h3>
+        <div className="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            { id: 'portfolio', title: 'Portfolio Performance', description: 'Comprehensive analysis of your entire investment portfolio', time: '5-10 minutes' },
+            { id: 'market', title: 'Market Intelligence', description: 'In-depth market analysis for your target regions', time: '7-12 minutes' },
+            { id: 'opportunities', title: 'Investment Opportunities', description: 'AI-curated list of potential investment properties', time: '8-15 minutes' },
+            { id: 'cashflow', title: 'Cash Flow Analysis', description: 'Detailed cash flow projections for your properties', time: '4-8 minutes' },
+          ].map((report) => (
+            <div key={report.id} className="border rounded-lg p-4 hover:border-blue-500 hover:shadow-sm cursor-pointer">
+              <h4 className="font-medium">{report.title}</h4>
+              <p className="text-sm text-gray-600 mt-1">{report.description}</p>
+              <p className="text-xs text-gray-500 mt-2">Estimated time: {report.time}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="flex justify-end">
+        <Button>Generate Selected Report</Button>
+      </div>
+    </div>
+  </ActionModal>
+);
+
+export const GenerateReportModal: React.FC<{ className?: string, triggerText?: string, buttonVariant?: ButtonVariant, buttonSize?: ButtonSize }> = ({ 
+  className, 
+  triggerText = "Generate Report", 
+  buttonVariant = "default", 
+  buttonSize = "default" 
+}) => (
+  <ActionModal 
+    triggerText={triggerText} 
+    modalTitle="Generate Report"
+    modalDescription="Create a new report from this template"
+    buttonVariant={buttonVariant}
+    buttonSize={buttonSize}
+    buttonClassName={className}
+  >
+    <div className="space-y-4">
+      <div>
+        <h3 className="text-lg font-medium">Report Configuration</h3>
+        <div className="mt-2 space-y-4">
+          <div>
+            <label htmlFor="report-name" className="block text-sm font-medium text-gray-700">Report Name</label>
+            <input 
+              type="text" 
+              id="report-name" 
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" 
+              placeholder="Enter a name for this report"
+            />
+          </div>
+          <div>
+            <label htmlFor="report-scope" className="block text-sm font-medium text-gray-700">Report Scope</label>
+            <select 
+              id="report-scope" 
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+            >
+              <option>All Properties</option>
+              <option>Residential Only</option>
+              <option>Commercial Only</option>
+              <option>Custom Selection</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="time-period" className="block text-sm font-medium text-gray-700">Time Period</label>
+            <select 
+              id="time-period" 
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+            >
+              <option>Last 30 Days</option>
+              <option>Last Quarter</option>
+              <option>Year to Date</option>
+              <option>Last 12 Months</option>
+              <option>Custom Range</option>
+            </select>
+          </div>
+          <div className="flex justify-end">
+            <Button>Generate Report</Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ActionModal>
+);
+
+export const ViewAllReportsModal: React.FC<{ className?: string, triggerText?: string, buttonVariant?: ButtonVariant, buttonSize?: ButtonSize }> = ({ 
+  className, 
+  triggerText = "View All Reports", 
+  buttonVariant = "outline", 
+  buttonSize = "default" 
+}) => (
+  <ActionModal 
+    triggerText={triggerText} 
+    modalTitle="All Reports"
+    modalDescription="Browse and manage all your generated reports"
+    buttonVariant={buttonVariant}
+    buttonSize={buttonSize}
+    buttonClassName={className}
+  >
+    <div className="space-y-4">
+      <div className="flex justify-between items-center">
+        <div>
+          <input 
+            type="text" 
+            className="rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" 
+            placeholder="Search reports..."
+          />
+        </div>
+        <div>
+          <select className="rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+            <option>All Types</option>
+            <option>Portfolio Performance</option>
+            <option>Market Intelligence</option>
+            <option>Investment Opportunities</option>
+            <option>Cash Flow Analysis</option>
+          </select>
+        </div>
+      </div>
+      
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm text-left">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+              <th className="px-4 py-3">Report Name</th>
+              <th className="px-4 py-3">Type</th>
+              <th className="px-4 py-3">Date Generated</th>
+              <th className="px-4 py-3">Status</th>
+              <th className="px-4 py-3">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              { id: 1, name: 'Q2 Portfolio Performance', type: 'Portfolio', date: '2023-07-15', status: 'Completed' },
+              { id: 2, name: 'Austin Market Analysis', type: 'Market Intelligence', date: '2023-07-10', status: 'Completed' },
+              { id: 3, name: 'Investment Opportunities - Dallas', type: 'Opportunities', date: '2023-07-05', status: 'Completed' },
+              { id: 4, name: 'Cash Flow Projections - Residential', type: 'Cash Flow', date: '2023-07-01', status: 'Completed' },
+              { id: 5, name: 'Tax Optimization Strategy', type: 'Tax', date: '2023-06-28', status: 'Completed' },
+              { id: 6, name: 'Nashville Market Trends', type: 'Market Intelligence', date: '2023-06-25', status: 'Completed' },
+              { id: 7, name: 'Q1 Portfolio Performance', type: 'Portfolio', date: '2023-04-10', status: 'Completed' },
+              { id: 8, name: 'Commercial Properties Analysis', type: 'Cash Flow', date: '2023-03-22', status: 'Completed' },
+            ].map((report) => (
+              <tr key={report.id} className="border-b hover:bg-gray-50">
+                <td className="px-4 py-3 font-medium">{report.name}</td>
+                <td className="px-4 py-3">{report.type}</td>
+                <td className="px-4 py-3">{report.date}</td>
+                <td className="px-4 py-3">
+                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    {report.status}
+                  </span>
+                </td>
+                <td className="px-4 py-3">
+                  <div className="flex space-x-2">
+                    <Button variant="outline" size="sm">View</Button>
+                    <Button variant="outline" size="sm">Download</Button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ActionModal>
+);
+
+export const DownloadReportModal: React.FC<{ className?: string, triggerText?: string, buttonVariant?: ButtonVariant, buttonSize?: ButtonSize }> = ({ 
+  className, 
+  triggerText = "Download", 
+  buttonVariant = "outline", 
+  buttonSize = "sm" 
+}) => (
+  <ActionModal 
+    triggerText={triggerText} 
+    modalTitle="Download Report"
+    modalDescription="Select format and options for downloading"
+    buttonVariant={buttonVariant}
+    buttonSize={buttonSize}
+    buttonClassName={className}
+  >
+    <div className="space-y-4">
+      <div>
+        <h3 className="text-lg font-medium">Download Options</h3>
+        <div className="mt-2 space-y-4">
+          <div>
+            <p className="block text-sm font-medium text-gray-700 mb-2">File Format</p>
+            <div className="flex space-x-4">
+              {[
+                { id: 'pdf', label: 'PDF Document' },
+                { id: 'excel', label: 'Excel Spreadsheet' },
+                { id: 'csv', label: 'CSV Data File' },
+              ].map((format) => (
+                <div key={format.id} className="flex items-center">
+                  <input 
+                    id={`format-${format.id}`} 
+                    name="file-format" 
+                    type="radio" 
+                    className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500" 
+                    defaultChecked={format.id === 'pdf'} 
+                  />
+                  <label htmlFor={`format-${format.id}`} className="ml-2 block text-sm text-gray-700">
+                    {format.label}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="block text-sm font-medium text-gray-700 mb-2">Include</p>
+            <div className="space-y-2">
+              {[
+                { id: 'charts', label: 'Charts and Graphs' },
+                { id: 'tables', label: 'Data Tables' },
+                { id: 'analysis', label: 'Written Analysis' },
+                { id: 'recommendations', label: 'Recommendations' },
+              ].map((item) => (
+                <div key={item.id} className="flex items-center">
+                  <input 
+                    id={`include-${item.id}`} 
+                    name={`include-${item.id}`} 
+                    type="checkbox" 
+                    className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" 
+                    defaultChecked 
+                  />
+                  <label htmlFor={`include-${item.id}`} className="ml-2 block text-sm text-gray-700">
+                    {item.label}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex justify-end">
+            <Button>Download Report</Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ActionModal>
+);
+
 export const AnalyzeDealModal: React.FC<{ className?: string }> = ({ className }) => (
   <ActionModal 
     triggerText="Analyze Deal" 
