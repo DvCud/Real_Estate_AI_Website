@@ -13,12 +13,15 @@ import {
   DialogClose
 } from '@/components/ui/Dialog';
 
+export type ButtonVariant = 'default' | 'secondary' | 'outline' | 'ghost' | 'link' | 'success' | 'warning' | 'danger';
+export type ButtonSize = 'default' | 'sm' | 'lg' | 'icon';
+
 type ActionModalProps = {
   triggerText: string;
   modalTitle: string;
   modalDescription?: string;
-  buttonVariant?: 'default' | 'secondary' | 'outline' | 'ghost' | 'link' | 'success' | 'warning' | 'danger';
-  buttonSize?: 'default' | 'sm' | 'lg' | 'icon';
+  buttonVariant?: ButtonVariant;
+  buttonSize?: ButtonSize;
   buttonClassName?: string;
   children?: React.ReactNode;
 };
@@ -28,7 +31,7 @@ export const ActionModal: React.FC<ActionModalProps> = ({
   modalTitle,
   modalDescription,
   buttonVariant = 'outline',
-  buttonSize = 'sm',
+  buttonSize = 'default',
   buttonClassName,
   children,
 }) => {

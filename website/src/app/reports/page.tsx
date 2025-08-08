@@ -116,7 +116,7 @@ export default function ReportsPage() {
                   <p className="text-xs text-gray-500">Estimated processing time: {template.estimatedTime}</p>
                 </CardContent>
                 <CardFooter>
-                  <GenerateReportModal triggerText="Generate Report" buttonClassName="w-full" />
+                  <GenerateReportModal triggerText="Generate Report" className="w-full" />
                 </CardFooter>
               </Card>
             ))}
@@ -168,7 +168,7 @@ export default function ReportsPage() {
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex space-x-2">
-                        <ViewAnalysisModal triggerText="View" buttonVariant="outline" buttonSize="sm" modalTitle="Report Details" />
+                        <ViewAnalysisModal />
                         <DownloadReportModal buttonVariant="outline" buttonSize="sm" />
                       </div>
                     </td>

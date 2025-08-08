@@ -101,7 +101,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
       </CardContent>
 
       <CardFooter>
-        <ViewAnalysisModal buttonVariant="default" className="w-full" />
+        <ViewAnalysisModal className="w-full" />
       </CardFooter>
     </Card>
   );

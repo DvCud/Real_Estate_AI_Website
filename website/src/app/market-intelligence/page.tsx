@@ -132,7 +132,7 @@ export default function MarketIntelligencePage() {
               <CardTitle>Current Market Trends</CardTitle>
               <CardDescription>Performance metrics for key markets</CardDescription>
             </div>
-            <ViewMarketReportModal triggerText="Download Report" buttonVariant="outline" />
+            <ViewMarketReportModal />
           </div>
         </CardHeader>
         <CardContent>
