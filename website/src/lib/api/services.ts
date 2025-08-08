@@ -9,3 +9,4 @@ export { portfolioService } from './portfolioService';
 export { marketService } from './marketService';
 export { reportService } from './reportService';
 export { authService } from './authService';
+export { supabaseService } from './supabaseService';
