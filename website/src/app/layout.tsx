@@ -7,10 +7,7 @@ import { UserProvider } from '@/lib/context/UserContext';
 import { SupabaseUserProvider } from '@/lib/context/SupabaseUserContext';
 import { FooterLinks } from '@/components/FooterLinks';
 
-// Import mock API for development
-if (process.env.NODE_ENV === 'development') {
-  require('@/lib/api/initMockApi');
-}
+
 
 const inter = Inter({ 
   subsets: ['latin'], 
